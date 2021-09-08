@@ -3,24 +3,24 @@ session_start();
 include "../db/db_conn.php";
 $conn = OpenCon();
 
-if (isset($_FILES['file']['name'])) { 
-    $filename = $_FILES['file']['name']; 
-    $file = file_get_contents($_FILES['file']['tmp_name']); 
-    try { 
-        $data = '1'; 
-        $valor = 1;
-        $name = 'Algoritmos';
-        $stmt = $conn->prepare("INSERT INTO documentos (nombre,estado,documento,id_usuario) VALUES (?,?,?,?)");
-        $stmt->bind_param("ssss", $name, $data, $file, $valor);
+if (isset($_FILES['file']['name'])) {
+    $filename = $_FILES['file']['name'];
+    $file = file_get_contents($_FILES['file']['tmp_name']);
+    try {
+        $data = '1';
+        $stmt = $conn->prepare("INSERT INTO documentos (nombre,estado,documento,id_usuario, descripcion, created_at, updated_at) VALUES (?,?,?,?,?, NOW(), NOW())");
+        $stmt->bind_param("sssss", $_FILES['file']['name'], $data, $file, $_SESSION['id_usuario'], $_POST['descripcion']);
         $stmt->execute();
         if ($stmt) {
-            echo 'Consulta exitosa';
+            $arr = array('code' => '200', 'message' => 'Se envió la información correctamente');
         } else {
-            echo 'Consulta con errores';
+            $arr = array('code' => '400', 'message' => 'Consulte con el administrador, sucedio algún error.');
         }
         $stmt->close();
-        $arr = array('ok' => 'Ingreso exitoso');
-        return ($arr);
+        header('Content-Type: application/json');
+        echo json_encode($arr);
+        exit;
+        //return ($arr);
     } catch (Exception $e) {
         echo 'Errores';
         echo $e;
