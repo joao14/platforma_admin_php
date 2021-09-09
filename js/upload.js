@@ -14,9 +14,9 @@ $(document).ready(function () {
             processData: false,
             data: form_data,
             type: 'post',
-            success: function (response) {               
+            success: function (response) {
                 var resp = JSON.parse(response);
-                if (resp.code == '200') {                   
+                if (resp.code == '200') {
                     $('.message').html('<p class="success">' + resp.message + '</p>');
                     $('#documentacion').trigger("reset");
                 } else {
@@ -28,4 +28,5 @@ $(document).ready(function () {
         });
 
     });
+
 });

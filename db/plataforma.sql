@@ -29,6 +29,7 @@ CREATE TABLE documentos (
     estado VARCHAR(2),
     documento BLOB,
     descripcion VARCHAR(250),
+    mime VARCHAR(50),
     created_at TIMESTAMP NULL,
     updated_at TIMESTAMP NULL,   
     id_usuario BIGINT UNSIGNED,

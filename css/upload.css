@@ -1,3 +1,19 @@
+body {
+	/*background: #1690A7;*/
+	/*display: flex;*/
+	justify-content: center;
+	align-items: center;
+	/*height: 100vh;*/
+	flex-direction: column;
+}
+
+form { 	
+	border: 2px solid #ccc;
+	padding: 30px;
+	background: #fff;
+	border-radius: 15px;
+}
+
 textarea{
     margin: 15px;
     resize: none;

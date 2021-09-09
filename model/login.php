@@ -6,7 +6,7 @@ echo 'Barcelona S.C';
 if ($conn->connect_errno) {
 	header("Location: ../index.php?error=El sistema esta temporalmente con errores");
 	exit;
-} 
+}
 
 if (isset($_POST['uname']) && isset($_POST['password'])) {
 
