@@ -5,16 +5,19 @@ $conn = OpenCon();
 
 if (isset($_SESSION['id_usuario']) && isset($_SESSION['nombres'])) {
     try {
-        $sql = "SELECT * FROM documentos WHERE id_usuario=" . $_SESSION['id_usuario'];
+        if ($_SESSION['id_perfil'] == "2") {
+            $sql = "SELECT d.*,e.nombres FROM documentos d INNER JOIN estados e ON e.id_estado=d.id_estado ";
+        } else {
+            $sql = "SELECT d.*,e.nombres FROM documentos d INNER JOIN estados e ON e.id_estado=d.id_estado WHERE d.id_usuario=" . $_SESSION['id_usuario'] . "";
+        } 
         $result = mysqli_query($conn, $sql);
         $filesbyuser = "";
-        while ($data = mysqli_fetch_assoc($result)) {
-            if ($data['estado'] == '1') {
-                $button_estado = '<button type="button" class="btn btn-info" disabled>Enviado</button>';
+        while ($data = mysqli_fetch_assoc($result)) {            
+            if ($_SESSION['id_perfil'] == 1) {
+                $filesbyuser .= '<tr><td>' . $data['id_documento'] . '</td><td>' . $data['nombre'] . '</td><td><button type="button" class="btn btn-warning" disabled>' . $data['nombres'] . '</button></td><td>' . $data['created_at'] . '</td><td>' . $data['descripcion'] . '</td><td><a target=\'_blank\' href="model/view.php?id=' . $data['id_documento'] . '">' . $data['nombre'] . '</a></td></tr>';
             } else {
-                $button_estado = '<button type="button" class="btn btn-warning" disabled>Aceptado</button>';
+                $filesbyuser .= '<tr><td><a href="upload.php?documento=' . $data['id_documento'] . '" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Editar</a></td><td>' . $data['id_documento'] . '</td><td>' . $data['nombre'] . '</td><td><button type="button" class="btn btn-warning" disabled>' . $data['nombres'] . '</button></td><td>' . $data['created_at'] . '</td><td>' . $data['descripcion'] . '</td><td><a target=\'_blank\' href="model/view.php?id=' . $data['id_documento'] . '">' . $data['nombre'] . '</a></td></tr>';
             }
-            $filesbyuser .= '<tr><td>' . $data['id_documento'] . '</td><td>' . $data['nombre'] . '</td><td>' . $button_estado . '</td><td>' . $data['created_at'] . '</td><td>' . $data['descripcion'] . '</td><td><a target=\'_blank\' href="model/view.php?id=' . $data['id_documento'] . '">' . $data['nombre'] . '</a></td></tr>';
         }
         echo $filesbyuser;
         $conn->close();

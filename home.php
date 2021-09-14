@@ -29,7 +29,7 @@ if (isset($_SESSION['id_usuario']) && isset($_SESSION['nombres'])) {
                     <a href="model/logout.php" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Salir</a>
                </div>
 
-          </div> 
+          </div>
 
           <div class="row">
                <div class="col-1"></div>
@@ -37,6 +37,7 @@ if (isset($_SESSION['id_usuario']) && isset($_SESSION['nombres'])) {
                     <table id="documents" class="table">
                          <thead class="table-success">
                               <tr>
+                                   <?php if ($_SESSION['id_perfil'] == 2) { ?><th scope="col"></th> <?php } ?>
                                    <th scope="col">#</th>
                                    <th scope="col">Nombre Documento</th>
                                    <th scope="col">Estado</th>
