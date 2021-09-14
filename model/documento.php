@@ -8,7 +8,7 @@ if (isset($_SESSION['id_usuario']) && isset($_SESSION['nombres'])) {
         $result = mysqli_query($conn, $sql);
         $arr = null;
         while ($data = mysqli_fetch_assoc($result)) {
-            $arr = array('descripcion' => $data['descripcion'], 'id_area' => $data['id_area'], 'id_estado' => $data['id_estado']);
+            $arr = array('descripcion' => $data['descripcion'], 'observacion' => $data['observacion'], 'id_area' => $data['id_area'], 'id_estado' => $data['id_estado']);
         }
         $conn->close();
         header('Content-Type: application/json');

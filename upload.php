@@ -18,7 +18,7 @@ if (isset($_SESSION['id_usuario']) && isset($_SESSION['nombres'])) {
         <link href="css/bootstrap.min.css" rel="stylesheet">
     </head>
 
-    <body onload="areas(), estados(), select()">
+    <body onload="areas(), estados(), select(), validate()">
         <div class="row">
             <div class="col-12">
                 <h1 style="text-align: center;">Datos de documentación</h1>
@@ -40,12 +40,12 @@ if (isset($_SESSION['id_usuario']) && isset($_SESSION['nombres'])) {
 
                     <div class="mb-3">
                         <label for="descripcion" class="form-label">Descripción</label>
-                        <textarea type="text" class="form-control" id="descripcion" rows="6" cols="49" readonly="<?php echo isset($_GET['documento']) ? true : false ?>"></textarea>
+                        <textarea type="text" class="form-control" id="descripcion" rows="6" cols="49"></textarea>
                     </div>
 
                     <div class="mb-3">
-                        <label for="descripcion" class="form-label">Área</label> 
-                        <select id="areas" class="form-select" aria-label="Default select example" disabled="<?php echo isset($_GET['documento']) ? true : false ?>">
+                        <label for="descripcion" class="form-label">Área</label>
+                        <select id="areas" class="form-select" aria-label="Default select example">
                             <option selected>Seleccione</option>
                         </select>
                     </div>
@@ -56,7 +56,7 @@ if (isset($_SESSION['id_usuario']) && isset($_SESSION['nombres'])) {
                     </div>
 
                     <?php
-                    if ($_SESSION['id_perfil'] == 2) {
+                    if (isset($_GET['documento']) && $_SESSION['id_perfil'] == 2) {
                     ?>
                         <div class="mb-3">
                             <label for="descripcion" class="form-label">Estado</label>
@@ -71,7 +71,8 @@ if (isset($_SESSION['id_usuario']) && isset($_SESSION['nombres'])) {
                         </div>
                     <?php } ?>
                     <button type="button" id="back" onclick="history.go(-1);" class="btn btn-warning mb-3">Regresar</button>
-                    <button type="button" id="btn" class="btn btn-primary mb-3">Enviar</button>
+                    <button type="button" id="btn" class="btn btn-primary mb-3">Guardar</button>
+                    <button type="button" id="btnEdit" class="btn btn-primary mb-3">Editar</button>
                 </form>
             </div>
             <div class="col-3"></div>

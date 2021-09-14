@@ -43,6 +43,7 @@ if (isset($_SESSION['id_usuario']) && isset($_SESSION['nombres'])) {
                                    <th scope="col">Estado</th>
                                    <th scope="col">Fecha Envío</th>
                                    <th scope="col">Descripción</th>
+                                   <th scope="col">Observación</th>
                                    <th scope="col">Archivo</th>
                               </tr>
                          </thead>
