@@ -7,13 +7,17 @@ $dbuser = "root";
 $dbpass = "root";   
 $db = "plataforma_admin";   
 
-$conn = new mysqli($dbhost, $dbuser, $dbpass,$db) or die("Connect failed: %s\n". $conn -> error);
-  
-return $conn;
+    $dbhost = "localhost";
+    $dbuser = "root";
+    $dbpass = "";
+    $db = "plataforma_admin";
 
+    $conn = new mysqli($dbhost, $dbuser, $dbpass, $db) or die("Connect failed: %s\n" . $conn->error);
+
+    return $conn;
 }
 
 function CloseCon($conn)
- {
- $conn -> close();
- }
+{
+    $conn->close();
+}
