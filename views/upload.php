@@ -11,10 +11,10 @@ if (isset($_SESSION['id_usuario']) && isset($_SESSION['nombres'])) {
         <title>Gestion de documentos</title>
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="icon" href="https://img.icons8.com/fluency/48/000000/link.png" type="image/x-icon">
-        <script src="./js/jquery.js"></script>
-        <script src="./js/bootstrap.min.js"></script>
-        <script src="./js/upload.js"></script>
-        <link rel="stylesheet" type="text/css" href="./css/upload.css">
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        <script src="js/upload.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/upload.css">
         <link href="css/bootstrap.min.css" rel="stylesheet">
     </head>
 
@@ -30,7 +30,7 @@ if (isset($_SESSION['id_usuario']) && isset($_SESSION['nombres'])) {
                 <div class="message"></div>
                 <form id="documentacion">
                     <?php
-                    if (isset($_GET['documento']) && $_SESSION['id_perfil'] == 2) {
+                    if (isset($_GET['documento']) && $_SESSION['perfil'] == "ADMIN") {
                     ?>
                         <div class="mb-3">
                             <label for="descripcion" class="form-label">Documento</label>
@@ -56,7 +56,7 @@ if (isset($_SESSION['id_usuario']) && isset($_SESSION['nombres'])) {
                     </div>
 
                     <?php
-                    if (isset($_GET['documento']) && $_SESSION['id_perfil'] == 2) {
+                    if (isset($_GET['documento']) && $_SESSION['perfil'] == "ADMIN") {
                     ?>
                         <div class="mb-3">
                             <label for="descripcion" class="form-label">Estado</label>
@@ -84,7 +84,7 @@ if (isset($_SESSION['id_usuario']) && isset($_SESSION['nombres'])) {
 
 <?php
 } else {
-    header("Location: index.php");
+    header("Location: ../index.php");
     exit();
 }
 ?>

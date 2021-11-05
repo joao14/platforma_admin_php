@@ -5,28 +5,28 @@ if (isset($_SESSION['id_usuario']) && isset($_SESSION['nombres'])) {
 
 ?>
      <!DOCTYPE html>
-     <html>
-
+     <html>      
+     
      <head>
           <title>Dashboard Documentos</title>
           <link rel="stylesheet" type="text/css" href="css/home.css">
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
           <link rel="icon" href="https://img.icons8.com/fluency/48/000000/link.png" type="image/x-icon">
-          <script src="./js/jquery.js"></script>
-          <script src="./js/bootstrap.min.js"></script>
-          <script src="./js/home.js"></script>
-          <link rel="stylesheet" type="text/css" href="css/upload.css">
-          <link href="css/bootstrap.min.css" rel="stylesheet">
+          <script src="js/jquery.js"></script>  
+          <script src="js/bootstrap.min.js"></script>  
+          <script src="js/home.js"></script>  
+          <link rel="stylesheet" type="text/css" href="css/upload.css">  
+          <link href="css/bootstrap.min.css" rel="stylesheet">  
      </head>
 
      <body onload="data()">
 
-          <div class="row">
+          <div class="row">    
                <div class="col-10">
                     <h1>Bienvenido, <?php echo $_SESSION['nombres']; ?></h1>
                </div>
                <div class="col-2">
-                    <a href="model/logout.php" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Salir</a>
+                    <a href="../models/logout.php" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Salir</a>
                </div>
 
           </div>
@@ -37,7 +37,7 @@ if (isset($_SESSION['id_usuario']) && isset($_SESSION['nombres'])) {
                     <table id="documents" class="table">
                          <thead class="table-success">
                               <tr>
-                                   <?php if ($_SESSION['id_perfil'] == 2) { ?><th scope="col"></th> <?php } ?>
+                                   <?php if ($_SESSION['perfil'] == "ADMIN") { ?><th scope="col"></th> <?php } ?>
                                    <th scope="col">#</th>
                                    <th scope="col">Nombre Documento</th>
                                    <th scope="col">Estado</th>
@@ -60,9 +60,9 @@ if (isset($_SESSION['id_usuario']) && isset($_SESSION['nombres'])) {
 
      </html>
 
-<?php
-} else {
-     header("Location: index.php");
+<?php 
+} else { 
+     header("Location: ../index.php");
      exit();
-}
+} 
 ?>
