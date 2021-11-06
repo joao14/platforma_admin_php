@@ -2,18 +2,17 @@
 session_start();
 include "../db/db_conn.php";
 $conn = OpenCon();
-
 if (isset($_SESSION['id_usuario']) && isset($_SESSION['nombres'])) {
     try {
-        $sql = "SELECT * FROM estados";
+        $sql = "SELECT * FROM documentos WHERE id_documento=" . $_POST['documento'] . "";
         $result = mysqli_query($conn, $sql);
-        $options = "";
+        $arr = null;
         while ($data = mysqli_fetch_assoc($result)) {
-            $options .= '<option value="' . $data['id_estado'] . '">' . $data['nombres'] . '</option>';
+            $arr = array('descripcion' => $data['descripcion'], 'observacion' => $data['observacion'], 'id_area' => $data['id_area'], 'id_estado' => $data['id_estado']);
         }
-        echo $options;
-        $conn->close(); 
+        $conn->close();
         header('Content-Type: application/json');
+        echo json_encode($arr);
         exit;
     } catch (Exception $e) {
         echo 'Errores';

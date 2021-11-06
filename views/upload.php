@@ -17,10 +17,10 @@ if (isset($_SESSION['id_usuario']) && isset($_SESSION['nombres'])) {
         <link rel="stylesheet" type="text/css" href="css/upload.css">
         <link href="css/bootstrap.min.css" rel="stylesheet">
     </head>
-
+  
     <body onload="areas(), estados(), select(), validate()">
-        <div class="row">
-            <div class="col-12">
+        <div class="row">    
+            <div class="col-12">  
                 <h1 style="text-align: center;">Datos de documentación</h1>
             </div>
         </div>
