@@ -66,8 +66,8 @@ switch ($_POST["action"]) {
         foreach($result as $data){
             if ($_SESSION['perfil'] != "ADMIN") {
                     $filesbyuser .= '<tr><td>' . $data['id_documento'] . '</td><td>' . $data['nombre'] . '</td><td><button type="button" class="btn btn-warning" disabled>' . $data['nombres'] . '</button></td><td>' . $data['created_at'] . '</td><td>' . $data['descripcion'] . '</td><td>' . $data['observacion'] . '</td><td><a target=\'_blank\' href="../controllers/reporte.php?id=' . $data['id_documento'] . '">' . $data['nombre'] . '</a></td></tr>';
-            } else {
-                    $filesbyuser .= '<tr><td><a href="upload.php?documento=' . $data['id_documento'] . '" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Editar</a></td><td>' . $data['id_documento'] . '</td><td>' . $data['nombre'] . '</td><td><button type="button" class="btn btn-warning" disabled>' . $data['nombres'] . '</button></td><td>' . $data['created_at'] . '</td><td>' . $data['descripcion'] . '</td><td>' . $data['observacion'] . '</td><td><a target=\'_blank\' href="../controllers/reporte.php?id=' . $data['id_documento'] . '">' . $data['nombre'] . '</a></td></tr>';
+            } else { 
+                $filesbyuser .= '<tr><td><a href="upload.php?documento=' . $data['id_documento'] . '" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Editar</a></td><td style="background-color:'.getColorLightofRisk(date('d') - date('N', strtotime($data['created_at']))).';color:white;border-radius: 10px;">'.getCommentLightofRisk(date('d') - date('N', strtotime($data['created_at']))).'</td><td>' . $data['id_documento'] . '</td><td>' . $data['nombre'] . '</td><td><button type="button" class="btn btn-warning" disabled>' . $data['nombres'] . '</button></td><td>' . $data['created_at'] . '</td><td>' . $data['descripcion'] . '</td><td>' . $data['observacion'] . '</td><td><a target=\'_blank\' href="../controllers/reporte.php?id=' . $data['id_documento'] . '">' . $data['nombre'] . '</a></td></tr>';
             }
         }
         echo $filesbyuser;            
@@ -79,5 +79,34 @@ switch ($_POST["action"]) {
         # code...
         break;
 }
+
+
+function getCommentLightofRisk($day){
+
+   if($day<=2){
+    return "Nuevo";
+   }
+   if($day>2&&$day<5){
+    return "En peligro";
+   }
+   if($day>=5){
+    return "Atender inmediata";
+    }
+
+}
+
+function getColorLightofRisk($day){
+
+    if($day<=2){
+     return "#33ff49";
+    }
+    if($day>2&&$day<5){
+     return "#FFFF33";
+    }
+    if($day>=5){
+     return "#FF4933";
+    }
+ 
+ }
 
 
