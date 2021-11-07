@@ -8,8 +8,8 @@
 </head> 
   
 <body>
-	<form action="controllers/login.php" method="post">
-		<h2>Plataforma Admin</h2>  
+	<form action="controllers/usuario.php" method="post">
+		<h2>Plataforma Admin</h2>   
 		<?php if (isset($_GET['error'])) { ?>  
 			<p class="error"><?php echo $_GET['error']; ?></p>
 		<?php } ?>  

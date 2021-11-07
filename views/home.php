@@ -4,21 +4,21 @@ session_start();
 if (isset($_SESSION['id_usuario']) && isset($_SESSION['nombres'])) {
 
 ?>
-     <!DOCTYPE html>
-     <html>      
+     <!DOCTYPE html> 
+     <html>       
      
      <head>
-          <title>Dashboard Documentos</title>
+          <title>Dashboard Documentos</title>   
           <link rel="stylesheet" type="text/css" href="css/home.css">
           <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
           <link rel="icon" href="https://img.icons8.com/fluency/48/000000/link.png" type="image/x-icon">
           <script src="js/jquery.js"></script>  
-          <script src="js/bootstrap.min.js"></script>  
-          <script src="js/home.js"></script>  
+          <script src="js/bootstrap.min.js"></script>    
+          <script src="js/documento.js"></script>  
           <link rel="stylesheet" type="text/css" href="css/upload.css">  
           <link href="css/bootstrap.min.css" rel="stylesheet">  
      </head>
-
+    
      <body onload="data()">
 
           <div class="row">    

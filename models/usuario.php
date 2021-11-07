@@ -2,12 +2,12 @@
 
 require_once ("../db/db_conn.php");
 
-class Login{
+class Usuario{
 
 	private $user;     
     private $db;	   
  
-
+ 
 	public function __construct() {
         $this->user = null;  
         $this->db = Conectar::conexion();  

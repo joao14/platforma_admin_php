@@ -1,12 +1,12 @@
 <?php
 
     session_start();
-    require_once("../models/login.php");   
-    $services = new Login();     
-              
+    require_once("../models/usuario.php");   
+    $services = new Usuario();     
+                
     $result = $services->getInformationOfUserByCredentials($_POST['uname'],$_POST['password']);    
     
-    if (mysqli_num_rows($result) === 1) {
+    if (mysqli_num_rows($result) === 1) {  
         $row = mysqli_fetch_assoc($result);       
         if ($row['user'] === $_POST['uname'] && $row['password'] === $_POST['password']) {
            

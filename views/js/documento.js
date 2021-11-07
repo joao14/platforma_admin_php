@@ -8,8 +8,9 @@ $(document).ready(function() {
         form_data.append("file", file_data);
         form_data.append("descripcion", descripcion);
         form_data.append("area", area);
+        form_data.append("action", "S");
         $.ajax({
-            url: "./model/upload.php",
+            url: "../controllers/documento.php",
             dataType: 'text',
             cache: false,
             contentType: false,
@@ -39,8 +40,9 @@ $(document).ready(function() {
         form_data.append("documento", documento);
         form_data.append("estado", estado);
         form_data.append("observacion", observacion);
+        form_data.append("action", "E");
         $.ajax({
-            url: "./model/upload_update.php",
+            url: "../controllers/documento.php",
             dataType: 'text',
             cache: false,
             contentType: false,
@@ -62,6 +64,22 @@ $(document).ready(function() {
     });
 
 });
+
+function data() {
+    var form_data = new FormData();
+    form_data.append("action", "RDS");
+    $.ajax({
+        url: "../controllers/documento.php",
+        dataType: 'text',
+        data: form_data,
+        processData: false,
+        contentType: false,
+        type: 'post',
+        success: function(response) {
+            $('#documents > tbody:last-child').append(response);
+        }
+    });
+}
 
 function areas() {
     var form_data = new FormData();
@@ -99,6 +117,7 @@ function select() {
     var documento = $("#documento").val();
     var form_data = new FormData();
     form_data.append("documento", documento);
+    form_data.append("action", "R");
     $.ajax({
         url: "../controllers/documento.php",
         dataType: 'text',
