@@ -42,10 +42,10 @@ class Documento {
 
     public function getDocumentosByUser($id_usuario , $perfil){        
         if ($perfil == "ADMIN") {
-            $sql = "SELECT d.*,e.nombres FROM documentos d INNER JOIN estados e ON e.id_estado=d.id_estado ORDER BY created_at asc";
+            $sql = "SELECT d.*,e.nombres,e.estado FROM documentos d INNER JOIN estados e ON e.id_estado=d.id_estado ORDER BY created_at asc";
         }else{
-            $sql = "SELECT d.*,e.nombres FROM documentos d INNER JOIN estados e ON e.id_estado=d.id_estado WHERE d.id_usuario=" . $id_usuario . " ORDER BY created_at asc";
-        }
+            $sql = "SELECT d.*,e.nombres,e.estado FROM documentos d INNER JOIN estados e ON e.id_estado=d.id_estado WHERE d.id_usuario=" . $id_usuario . " ORDER BY created_at asc";
+        } 
         foreach ($this->db->query($sql) as $res) {
             $this->documentos[] = $res;
         }

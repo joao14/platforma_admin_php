@@ -67,10 +67,14 @@ switch ($_POST["action"]) {
             if ($_SESSION['perfil'] != "ADMIN") {
                     $filesbyuser .= '<tr><td>' . $data['id_documento'] . '</td><td>' . $data['nombre'] . '</td><td><button type="button" class="btn btn-warning" disabled>' . $data['nombres'] . '</button></td><td>' . $data['created_at'] . '</td><td>' . $data['descripcion'] . '</td><td>' . $data['observacion'] . '</td><td><a target=\'_blank\' href="../controllers/reporte.php?id=' . $data['id_documento'] . '">' . $data['nombre'] . '</a></td></tr>';
             } else {
-                $fecha_dada= date_format(date_create($data['created_at']), 'Y/m/d');
-                $fecha_actual= date("Y/m/d"); 
-                $dias=dias_pasados($fecha_dada,$fecha_actual);
-                $filesbyuser .= '<tr><td><a href="upload.php?documento=' . $data['id_documento'] . '" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Editar</a></td><td style="background-color:'.getColorLightofRisk($dias).';color:white;border-radius: 10px;">'.getCommentLightofRisk($dias).'</td><td>' . $data['id_documento'] . '</td><td>' . $data['nombre'] . '</td><td><button type="button" class="btn btn-warning" disabled>' . $data['nombres'] . '</button></td><td>' . $data['created_at'] . '</td><td>' . $data['descripcion'] . '</td><td>' . $data['observacion'] . '</td><td><a target=\'_blank\' href="../controllers/reporte.php?id=' . $data['id_documento'] . '">' . $data['nombre'] . '</a></td></tr>';
+                if($data['estado']=="ACCEPTED"){
+                    $dias=-1;
+                }else{
+                    $fecha_dada= date_format(date_create($data['created_at']), 'Y/m/d');
+                    $fecha_actual= date("Y/m/d"); 
+                    $dias=dias_pasados($fecha_dada,$fecha_actual);
+                }
+                $filesbyuser .= '<tr><td><a href="upload.php?documento=' . $data['id_documento'] . '" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Editar</a></td><td style="background-color:'.getColorLightofRisk($dias).';color:white;border-radius: 10px;text-align:center;display: table-cell;vertical-align: middle;">'.getCommentLightofRisk($dias).'</td><td>' . $data['id_documento'] . '</td><td>' . $data['nombre'] . '</td><td><button type="button" class="btn btn-warning" disabled>' . $data['nombres'] . '</button></td><td>' . $data['created_at'] . '</td><td>' . $data['descripcion'] . '</td><td>' . $data['observacion'] . '</td><td><a target=\'_blank\' href="../controllers/reporte.php?id=' . $data['id_documento'] . '">' . $data['nombre'] . '</a></td></tr>';
             }
         }
         echo $filesbyuser;            
@@ -85,8 +89,10 @@ switch ($_POST["action"]) {
 
 
 function getCommentLightofRisk($day){
-    echo "DIA ".$day;
-   if($day<=2){
+   if($day < 0){
+    return "Resuelto";
+   }
+   if($day<=2 && $day >=0){
     return "Nuevo";
    }
    if($day>2&&$day<5){
@@ -100,7 +106,11 @@ function getCommentLightofRisk($day){
 
 function getColorLightofRisk($day){
 
-    if($day<=2){
+    if($day < 0){
+        return "#aab7b8";
+    }
+        
+    if($day<=2 && $day >=0){
      return "#33ff49";
     }
     if($day>2&&$day<5){
