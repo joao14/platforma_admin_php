@@ -1,6 +1,6 @@
 # Login-System-PHP-and-MYSQL
 
-1.- Used tools of XAMPP with Docker Hub
+1.- Used tools of XAMPP with Docker Hub.
 
     image: tomsik68/xampp
 
