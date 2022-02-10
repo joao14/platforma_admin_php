@@ -23,7 +23,7 @@ if (isset($_SESSION['id_usuario']) && isset($_SESSION['nombres'])) {
 
           <div class="row">    
                <div class="col-10">
-                    <h1>Bienvenido, <?php echo $_SESSION['nombres']; ?></h1>
+                    <h1>Bienvenid@, <?php echo $_SESSION['nombres']; ?></h1>
                </div>
                <div class="col-2">
                     <a href="../models/logout.php" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Salir</a>

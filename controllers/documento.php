@@ -5,7 +5,7 @@ require_once ("../models/documento.php");
 $services = new Documento(); 
 
 switch ($_POST["action"]) {
-    case 'R'://Read documentos by id
+    case 'R'://Leer documento por id
             $result = $services->getDocumentbyId($_POST['documento']); 
             $arr = null;
             if (mysqli_num_rows($result) === 1) { 
@@ -18,8 +18,7 @@ switch ($_POST["action"]) {
             echo json_encode($arr);
             exit;
         break;
-    case 'S'://Save new document
-
+    case 'S'://salvar nuevo documento 
         if (isset($_FILES['file']['name'])) {
             $filename = $_FILES['file']['name'];
             $file = file_get_contents($_FILES['file']['tmp_name']);           
@@ -41,7 +40,7 @@ switch ($_POST["action"]) {
        
         break;
 
-    case 'E'://Edit document
+    case 'E'://Editar documento
             
         if (isset($_SESSION['id_usuario']) && isset($_SESSION['nombres'])) {
 
@@ -59,7 +58,7 @@ switch ($_POST["action"]) {
         }
 
         break;
-    case 'RDS': //Read document by id_user
+    case 'RDS': //leer documento por id_user
 
         $result = $services->getDocumentosByUser($_SESSION['id_usuario'], $_SESSION['perfil']);
         $filesbyuser = "";  
